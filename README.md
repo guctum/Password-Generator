@@ -1,3 +1,3 @@
 # Password-Generator
 
-This project creates a randomly generated password. Later versions will include it writing to a file.
+This project creates a randomly generated password and writes it to a file.
