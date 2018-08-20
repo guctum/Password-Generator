@@ -1,18 +1,13 @@
 ﻿/*
  * Author: Greg Uctum
  * Template: https://codeshare.co.uk/blog/how-to-create-a-random-password-generator-in-c/
- * Version: 1.0
+ * Version: 1.1
  * Date: 8/15/2018
+ * Update Date: 8/19/2018
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Password_Generator.CodeShare.Library.Passwords;
@@ -24,6 +19,7 @@ namespace Password_Generator
         public Main()
         {
             InitializeComponent();
+            this.ActiveControl = txtName;
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
@@ -43,12 +39,34 @@ namespace Password_Generator
                 }
 
             lblPassword.Text = password;
+
+            string path = @""; // Path removed for my security.
+
+            if (!File.Exists(path))
+            {
+                File.Create(path).Dispose();
+
+                using (TextWriter tw = new StreamWriter(path))
+                {
+                    tw.WriteLine(txtName.Text + ": " + password);
+                }
+
             }
+            else if (File.Exists(path))
+            {
+                using (TextWriter tw = new StreamWriter(path))
+                {
+                    tw.WriteLine(txtName.Text + ": " + password);
+                }
+            }
+        }
+
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
     }
 
     namespace CodeShare.Library.Passwords
@@ -61,7 +79,7 @@ namespace Password_Generator
                 const string lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
                 const string uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                 const string numericCharacters = "0123456789";
-                const string specialCharacters = @"!#$%&*@\";
+                const string specialCharacters = @"!#&*@\";
                 const string spaceCharacter = " ";
                 const int passwordLengthMin = 8;
                 const int passwordLengthMax = 30;

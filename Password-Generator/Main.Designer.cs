@@ -33,6 +33,8 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
+            this.lblPasswordIntro = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnGenerate
@@ -73,6 +75,22 @@
             this.lblPassword.Size = new System.Drawing.Size(0, 13);
             this.lblPassword.TabIndex = 3;
             // 
+            // lblPasswordIntro
+            // 
+            this.lblPasswordIntro.AutoSize = true;
+            this.lblPasswordIntro.Location = new System.Drawing.Point(282, 126);
+            this.lblPasswordIntro.Name = "lblPasswordIntro";
+            this.lblPasswordIntro.Size = new System.Drawing.Size(71, 13);
+            this.lblPasswordIntro.TabIndex = 4;
+            this.lblPasswordIntro.Text = "Password for:";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(378, 119);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(75, 20);
+            this.txtName.TabIndex = 5;
+            // 
             // Main
             // 
             this.AcceptButton = this.btnGenerate;
@@ -81,6 +99,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.lblPasswordIntro);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
@@ -100,6 +120,8 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label lblPasswordIntro;
+        private System.Windows.Forms.TextBox txtName;
     }
 }
 
