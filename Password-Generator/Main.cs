@@ -1,10 +1,10 @@
 ﻿/*
- * Author: Greg Uctum
- * Template: https://codeshare.co.uk/blog/how-to-create-a-random-password-generator-in-c/
- * Version: 1.1
- * Date: 8/15/2018
- * Update Date: 8/19/2018
- */
+* Author: Greg Uctum
+* Template: https://codeshare.co.uk/blog/how-to-create-a-random-password-generator-in-c/
+* Version: 1.2
+* Date: 8/15/2018
+* Update Date: 8/20/2018
+*/
 
 using System;
 using System.IO;
@@ -24,41 +24,47 @@ namespace Password_Generator
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-                bool includeLowercase = true;
-                bool includeUppercase = true;
-                bool includeNumeric = true;
-                bool includeSpecial = true;
-                bool includeSpaces = false;
-                int lengthOfPassword = 17;
+            if (txtName.Text == "")
+            {
+                MessageBox.Show("This field needs to be filled in!");
+                return;
+            }
 
-                string password = PasswordGenerator.GeneratePassword(includeLowercase, includeUppercase, includeNumeric, includeSpecial, includeSpaces, lengthOfPassword);
+            bool includeLowercase = true;
+            bool includeUppercase = true;
+            bool includeNumeric = true;
+            bool includeSpecial = true;
+            bool includeSpaces = false;
+            int lengthOfPassword = 17;
 
-                while (!PasswordGenerator.PasswordIsValid(includeLowercase, includeUppercase, includeNumeric, includeSpecial, includeSpaces, password))
-                {
-                    password = PasswordGenerator.GeneratePassword(true, true, true, true, false, lengthOfPassword);
-                }
+            string password = PasswordGenerator.GeneratePassword(includeLowercase, includeUppercase, includeNumeric, includeSpecial, includeSpaces, lengthOfPassword);
+
+            while (!PasswordGenerator.PasswordIsValid(includeLowercase, includeUppercase, includeNumeric, includeSpecial, includeSpaces, password))
+            {
+                password = PasswordGenerator.GeneratePassword(true, true, true, true, false, lengthOfPassword);
+            }
 
             lblPassword.Text = password;
 
-            string path = @""; // Path removed for my security.
+            string path = @"C:\Users\guctu\Documents\Example.txt"; // Path removed for my security.
 
+            // This text is added only once to the file.
             if (!File.Exists(path))
             {
-                File.Create(path).Dispose();
-
-                using (TextWriter tw = new StreamWriter(path))
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
                 {
-                    tw.WriteLine(txtName.Text + ": " + password);
+                    sw.WriteLine(txtName.Text + ": " + password);
                 }
-
             }
-            else if (File.Exists(path))
+
+            // This text is always added, making the file longer over time
+            // if it is not deleted.
+            using (StreamWriter sw = File.AppendText(path))
             {
-                using (TextWriter tw = new StreamWriter(path))
-                {
-                    tw.WriteLine(txtName.Text + ": " + password);
-                }
+                sw.WriteLine(txtName.Text + ": " + password);
             }
+
         }
 
 
