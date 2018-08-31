@@ -1,15 +1,16 @@
 ﻿/*
 * Author: Greg Uctum
-* Template: https://codeshare.co.uk/blog/how-to-create-a-random-password-generator-in-c/
-* Version: 1.2
-* Date: 8/15/2018
-* Update Date: 8/20/2018
+* Note: Started off from a template, but changed paramaters to suit my needs. Also added in additional features.
+* Version: 1.3
+* Initial Date: 8/15/2018
+* Updated: 8/31/2018
 */
 
 using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Security.Principal;
 using Password_Generator.CodeShare.Library.Passwords;
 
 namespace Password_Generator
@@ -46,7 +47,12 @@ namespace Password_Generator
 
             lblPassword.Text = password;
 
-            string path = @"C:\Users\guctu\Documents\Example.txt"; // Path removed for my security.
+            // Gets username of the logged in user. This allows me to deploy this across multiple systems if I so desire.
+
+            WindowsIdentity user = WindowsIdentity.GetCurrent();
+            string userName = user.Name.Substring(user.Name.LastIndexOf("\\") + 1);
+
+            string path = @"C:\Users\" + userName + @"\Documents\Keys.txt"; // Somewhat more secure file name..? This was pretty much to see if I could.
 
             // This text is added only once to the file.
             if (!File.Exists(path))
