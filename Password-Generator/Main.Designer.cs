@@ -35,11 +35,13 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblPasswordIntro = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.lblPasswordLengthRequest = new System.Windows.Forms.Label();
+            this.txtLength = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(285, 199);
+            this.btnGenerate.Location = new System.Drawing.Point(182, 199);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 23);
             this.btnGenerate.TabIndex = 0;
@@ -61,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(282, 261);
+            this.label1.Location = new System.Drawing.Point(179, 261);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 2;
@@ -78,7 +80,7 @@
             // lblPasswordIntro
             // 
             this.lblPasswordIntro.AutoSize = true;
-            this.lblPasswordIntro.Location = new System.Drawing.Point(282, 126);
+            this.lblPasswordIntro.Location = new System.Drawing.Point(179, 119);
             this.lblPasswordIntro.Name = "lblPasswordIntro";
             this.lblPasswordIntro.Size = new System.Drawing.Size(71, 13);
             this.lblPasswordIntro.TabIndex = 4;
@@ -86,10 +88,26 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(378, 119);
+            this.txtName.Location = new System.Drawing.Point(378, 112);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(75, 20);
             this.txtName.TabIndex = 5;
+            // 
+            // lblPasswordLengthRequest
+            // 
+            this.lblPasswordLengthRequest.Location = new System.Drawing.Point(179, 154);
+            this.lblPasswordLengthRequest.Name = "lblPasswordLengthRequest";
+            this.lblPasswordLengthRequest.Size = new System.Drawing.Size(113, 13);
+            this.lblPasswordLengthRequest.TabIndex = 6;
+            this.lblPasswordLengthRequest.Text = "Number of Characters:";
+            this.lblPasswordLengthRequest.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // txtLength
+            // 
+            this.txtLength.Location = new System.Drawing.Point(378, 154);
+            this.txtLength.Name = "txtLength";
+            this.txtLength.Size = new System.Drawing.Size(75, 20);
+            this.txtLength.TabIndex = 7;
             // 
             // Main
             // 
@@ -100,6 +118,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(611, 450);
+            this.Controls.Add(this.txtLength);
+            this.Controls.Add(this.lblPasswordLengthRequest);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblPasswordIntro);
             this.Controls.Add(this.lblPassword);
@@ -126,6 +146,8 @@
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblPasswordIntro;
         private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblPasswordLengthRequest;
+        private System.Windows.Forms.TextBox txtLength;
     }
 }
 
